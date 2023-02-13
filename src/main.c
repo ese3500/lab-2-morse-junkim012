@@ -16,12 +16,6 @@ char overflow_space_counter_string[25];
 volatile int overflow_counter = 0;
 char overflow_counter_string[25];
 
-int prev_end = 0;
-int new_start = 0;
-volatile int space = 0;
-volatile int start = 0;
-volatile int end = 0;
-
 volatile int print = 0;
 volatile int print_space = 0;
 
