@@ -186,9 +186,17 @@ void Initialize() {
     // disable global interrupts;
     cli();
 
+    DDRB = 0b00001111;
+    PORTB = 0b00000010;
+
     // set PB5 to be output and pull high
     DDRB |= (1<<DDB5);
     PORTB &= ~(1<<PORTB5); // output off
+
+    DDRB |= (1<<DDB1);
+    DDRB |= (1<<DDB2);
+    PORTB &= ~(1<<PORTB1);
+    PORTB &= ~(1<<PORTB2);
 
     // set PB0 (ICP1) to be input
     DDRB &= ~(1<<DDB0);
@@ -283,10 +291,16 @@ int main(void) {
                 // dot
                 append(code, '.');
                 sprintf(string, "DOT\n");
+                PORTB |= (1 << PORTB1); // dot
+                _delay_ms(50);
+                PORTB &= ~(1 << PORTB1);
             } else {
 //                if ( overflow_counter > 3) {
                 append(code, '-');
                 sprintf(string, "DASH\n");
+                PORTB |= (1 << PORTB2);
+                _delay_ms(50);
+                PORTB &= ~(1 << PORTB2);
             }
 
 
